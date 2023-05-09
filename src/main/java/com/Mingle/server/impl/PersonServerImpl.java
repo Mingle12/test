@@ -26,7 +26,12 @@ public class PersonServerImpl extends ServiceImpl<PersonDao,Person> implements P
     }
 
     @Override
-    public void deletePeron(Person person) {
-        personDao.deleteById(person.getId());
+    public void deletePeron(int id) {
+        personDao.deleteById(id);
+    }
+
+    @Override
+    public void updatePerson(Person person) {
+        personDao.updateById(person);
     }
 }
