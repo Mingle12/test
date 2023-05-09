@@ -34,10 +34,6 @@ public class SwaggerConfig {
                 .title("SpringBoot项目SwaggerAPIAPI标题测试")
                 //用来描述整体的API
                 .description("SpringBoot项目SwaggerAPI描述测试")
-                //创建人信息
-                .contact(new Contact("测试员Mingle", "http://localhost:8080/springboot/swagger-ui.html", "739807674@qq.com"))
-                //用于定义服务的域名
-                //.termsOfServiceUrl("")
                 .version("1.0") //可以用来定义版本
                 .build();
     }
