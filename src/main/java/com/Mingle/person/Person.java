@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class Person {
 
-  private long id;
+  private Integer id;
   private String name;
   private long age;
 }
