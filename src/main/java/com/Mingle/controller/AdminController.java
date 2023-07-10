@@ -2,7 +2,9 @@ package com.Mingle.controller;
 
 import com.Mingle.common.R;
 import com.Mingle.person.Admin;
+import com.Mingle.person.TokenUser;
 import com.Mingle.server.AdminServer;
+import com.Mingle.util.JWTToken;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,7 +29,7 @@ public class AdminController {
 
     @ApiOperation(value = "管理员登录",notes = "输入id,名字,密码实现登录")
     @PostMapping("/Login")
-    public R<Admin> Login(HttpServletRequest request, @RequestBody @Valid Admin admin){
+    public R<TokenUser> Login(@RequestBody @Valid Admin admin){
         String getPassword = admin.getPassword();
         getPassword = DigestUtils.md5DigestAsHex(getPassword.getBytes());
         LambdaQueryWrapper<Admin> adminLambdaQueryWrapper = new LambdaQueryWrapper<>();
@@ -43,8 +45,11 @@ public class AdminController {
         if (addm.getStatus()==0){
             return R.error("账号已禁用！");
         }
-        request.getSession().setAttribute("admin",addm.getId());
-        return R.success(addm);
+        String token = JWTToken.createToken(addm);
+        TokenUser tokenUser = new TokenUser();
+        tokenUser.setAdmin(admin);
+        tokenUser.setToken(token);
+        return R.success(tokenUser);
     }
 
     @PostMapping("/Logout")
@@ -54,5 +59,9 @@ public class AdminController {
         return R.success("退出成功！");
     }
 
+    @PostMapping("/info")
+    public String Info (){
+        return "SUCCESS!!!";
+    }
 
 }
