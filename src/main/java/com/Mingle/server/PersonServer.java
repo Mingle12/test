@@ -2,11 +2,8 @@ package com.Mingle.server;
 
 
 import com.Mingle.person.Person;
-import java.util.List;
+import com.baomidou.mybatisplus.extension.service.IService;
 
-public interface PersonServer {
-    List<Person> getPersonList();
-    void addPerson(Person person);
-    void deletePeron(int id);
-    void updatePerson(Person person);
+public interface PersonServer extends IService<Person> {
+
 }

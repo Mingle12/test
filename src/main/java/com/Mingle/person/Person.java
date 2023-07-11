@@ -10,5 +10,8 @@ public class Person {
 
   private Integer id;
   private String name;
-  private long age;
+  private int age;
+  private String phone;
+  private String addressInfo;
+
 }
