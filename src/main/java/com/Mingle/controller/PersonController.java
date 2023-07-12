@@ -24,13 +24,6 @@ public class PersonController {
     private PersonServer personServer;
 
 
-    @ApiOperation(value = "查询用户", notes = "所有用户")
-    @PostMapping("/list")
-    public List<Person> getPerson() {
-        List<Person> list = personServer.getBaseMapper().selectList(null);
-        return (List<Person>) R.success(list);
-    }
-
     @PostMapping("/add")
     public R<String> getPerson(@RequestBody Person person) {
         Person person1 = new Person();
